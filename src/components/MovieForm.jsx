@@ -4,14 +4,20 @@ import axios from "axios";
 export default function MovieForm({ setMovies }) {
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(""); // <-- track error
 
   const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!input.trim()) return;
+    if (!input.trim()) {
+      setError("Please enter a movie preference."); // show error
+      return;
+    }
 
+    setError(""); // clear previous error
     setLoading(true);
+
     try {
       const res = await axios.post(
         `${BACKEND_URL}/recommend/`,
@@ -37,11 +43,12 @@ export default function MovieForm({ setMovies }) {
         value={input}
         onChange={(e) => setInput(e.target.value)}
         placeholder="Describe your movie preferences..."
-        className="border p-2 rounded"
+        className="border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
       />
+      {error && <p className="text-red-500 text-sm">{error}</p>} {/* show error */}
       <button
         type="submit"
-        className="bg-blue-500 text-white py-2 rounded hover:bg-blue-600"
+        className="bg-blue-500 text-white py-2 rounded hover:bg-blue-600 disabled:opacity-50"
         disabled={loading}
       >
         {loading ? "Loading..." : "Get Recommendations"}
