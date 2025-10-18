@@ -5,6 +5,8 @@ export default function MovieForm({ setMovies }) {
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!input.trim()) return;
@@ -12,15 +14,9 @@ export default function MovieForm({ setMovies }) {
     setLoading(true);
     try {
       const res = await axios.post(
-        "http://localhost:8000/recommend/",
-        {
-          user_input: input,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
+        `${BACKEND_URL}/recommend/`,
+        { user_input: input },
+        { headers: { "Content-Type": "application/json" } }
       );
       setMovies(res.data.recommended_movies);
     } catch (err) {
