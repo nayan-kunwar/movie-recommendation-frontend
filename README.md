@@ -1,16 +1,56 @@
-# React + Vite
+# Movie Recommender Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the **React + Vite frontend** for the Movie Recommender project. It connects to the FastAPI backend hosted on Render to fetch movie recommendations.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Clone the Repository
 
-## React Compiler
+```bash
+git clone <your-frontend-repo-url>
+cd movie-recommender-frontend
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## Setup Environment Variables
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Create a `.env` file in the root of the project and add the backend URL:
+
+```env
+VITE_BACKEND_URL=http://localhost:8000
+```
+
+---
+
+## Install Dependencies
+
+```bash
+npm install
+```
+
+or if you use Yarn:
+
+```bash
+yarn
+```
+
+---
+
+## Run the Development Server
+
+```bash
+npm run dev
+```
+
+or with Yarn:
+
+```bash
+yarn dev
+```
+
+This will start the frontend at `http://localhost:5173` (default Vite port). The frontend will make requests to the backend URL you set in `.env`.
+
+---
+
+
